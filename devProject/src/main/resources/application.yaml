@@ -4,15 +4,14 @@ server:
 
 # mybatis
 mybatis:
-  # package aliases set
+  # package aliases set (result type => class name) 
   type-aliases-package: com.dev.project.mapper
   # mapper xml set
   mapper-locations: mybatis/mapper/*.xml, mybatis/mapper/**/*.xml
 
 # project setting
 spring:
-
-# view
+  # view
   thymeleaf:
     cache: 'false'
     enabled: 'true'

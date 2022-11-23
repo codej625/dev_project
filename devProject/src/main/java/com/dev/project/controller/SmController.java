@@ -18,8 +18,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.dev.project.service.SmService;
 import com.dev.project.vo.SmVo;
 
+import lombok.extern.log4j.Log4j2;
+
+@Log4j2
 @Controller
 public class SmController {
+
 	
 	@Autowired
 	SmService smService;

@@ -27,7 +27,7 @@ spring:
     username: codej625
     hikari:
       maximum-pool-size: '4'
-    url: jdbc:postgresql://localhost:5432/project
+    url: jdbc:postgresql://localhost:5432/codej625
 
 # devtools
   devtools:

@@ -2,10 +2,26 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dev.project.mapper.HjMapper">
 
-  <select id="test" resultType="string">
-    SELECT ip
-    FROM record
-    WHERE ID = 1
+  <select id="selectAllList" resultType="com.dev.project.model.HjVO" parameterType="com.dev.project.model.HjVO">
+    SELECT (ROW_NUMBER() OVER()) AS NO
+	 	 , TO_CHAR(TO_TIMESTAMP(R.REQ_TIME / 1000), 'YYYY-MM-DD') AS req_time
+	 	 , TO_CHAR(TO_TIMESTAMP(R.REQ_TIME / 1000), 'YYYY-MM-DD') AS req_time
+	 	 , TO_CHAR(TO_TIMESTAMP(R.REQ_TIME / 1000), 'HH24:MI:SS') AS time
+	 	 , R.IP
+	 	 , R.DEVICE
+	 	 , R.TERM_CODE
+	 	 , R.ADV_OBJECT_NAME
+		 , R.CONTENTS_CODE
+		 , R.CONVERSION_TYPE
+		 , R.DUPLICATE_FLAG
+		 , R.INSU_PRICE
+		 , R.MKTAGREYN
+	  FROM RECORD AS R
+	 WHERE 1=1
+	 <if test='date1 != null and date != "" and date2 != unll and date2 != ""'>
+	   AND #{date1} <![CDATA[<=]]> TO_DATE(TO_CHAR(TO_TIMESTAMP(R.REQ_TIME / 1000), 'YYYY-MM-DD'), 'YYYY-MM-DD') <![CDATA[<=]]> #{date2}
+	 </if>
+	 ORDER BY R.REQ_TIME DESC;
   </select>
 
 </mapper>
